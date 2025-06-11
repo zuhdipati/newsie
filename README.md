@@ -5,7 +5,7 @@ A modern Flutter News App built using **Clean Architecture** and **BLoC**, with 
 ## Features
 - **Clean Architecture**: Well-structured and maintainable codebase using domain-driven principles.
 - **BLoC State Management**: Separation of business logic and UI using `flutter_bloc`.
-- **Internet Connectivity Checker**: Automatically switches to offline mode using `connectivity_plus`.
+- **Internet Connectivity Checker**: Automatically switches to offline mode using `internet_connection_checker_plus`.
 - **Offline Storage with Hive**: Articles are cached using `hive` when offline access is needed.
 - **Dependency Injection**: `get_it` for service locator pattern.
 - **Routing with GoRouter**: Type-safe and declarative routing.
