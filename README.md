@@ -1,4 +1,4 @@
-# 📰 Flutter News App
+# Flutter News App
 
 A modern Flutter News App built using **Clean Architecture** and **BLoC**, with offline caching, dependency injection, responsive layout, and full test coverage.
 
