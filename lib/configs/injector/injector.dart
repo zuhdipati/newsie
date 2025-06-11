@@ -1,0 +1,10 @@
+export 'package:newsapp/features/news/data/datasources/local_datasources.dart';
+export 'package:newsapp/features/news/data/datasources/remote_datasources.dart';
+export 'package:newsapp/features/news/data/repositories/news_repository_impl.dart';
+export 'package:newsapp/features/news/domain/repositories/news_repository.dart';
+export 'package:newsapp/features/news/domain/usecases/get_all_news.dart';
+export 'package:newsapp/features/news/domain/usecases/get_news_by_category.dart';
+export 'package:newsapp/features/news/domain/usecases/get_search_news.dart';
+export 'package:newsapp/features/news/presentation/bloc/news-bloc/news_bloc.dart';
+export 'package:newsapp/features/news/presentation/bloc/search-news-bloc/search_news_bloc.dart';
+export 'package:newsapp/core/services/connectivity_service.dart';

@@ -1,0 +1,53 @@
+{"protocolVersion":"0.1.1","runnerVersion":null,"pid":70478,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/Users/zuhdi/Documents/Flutter Portofolio/newsapp/test/widget_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /Users/zuhdi/Documents/Flutter Portofolio/newsapp/test/widget_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":0}
+{"suite":{"id":2,"platform":"vm","path":"/Users/zuhdi/Documents/Flutter Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"suite","time":4}
+{"test":{"id":3,"name":"loading /Users/zuhdi/Documents/Flutter Portofolio/newsapp/test/news/remote_datasources_test.dart","suiteID":2,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":4}
+{"count":2,"time":4,"type":"allSuites"}
+
+[{"event":"test.startedProcess","params":{"vmServiceUri":null,"observatoryUri":null}}]
+
+[{"event":"test.startedProcess","params":{"vmServiceUri":null,"observatoryUri":null}}]
+{"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2320}
+{"group":{"id":4,"suiteID":2,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":16,"line":null,"column":null,"url":null},"type":"group","time":2322}
+{"group":{"id":5,"suiteID":2,"parentID":4,"name":"abstract News Remote Data Source","metadata":{"skip":false,"skipReason":null},"testCount":4,"line":57,"column":3,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"group","time":2323}
+{"group":{"id":6,"suiteID":2,"parentID":5,"name":"abstract News Remote Data Source getAllNews()","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":60,"column":7,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"group","time":2323}
+{"test":{"id":7,"name":"abstract News Remote Data Source getAllNews() Kondisi Berhasil","suiteID":2,"groupIDs":[4,5,6],"metadata":{"skip":false,"skipReason":null},"line":63,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2323}
+{"testID":7,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2347}
+{"test":{"id":8,"name":"abstract News Remote Data Source getAllNews() Kondisi Gagal","suiteID":2,"groupIDs":[4,5,6],"metadata":{"skip":false,"skipReason":null},"line":78,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2347}
+{"testID":8,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2349}
+{"group":{"id":9,"suiteID":2,"parentID":5,"name":"abstract News Remote Data Source getNewsByCategory()","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":93,"column":7,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"group","time":2349}
+{"test":{"id":10,"name":"abstract News Remote Data Source getNewsByCategory() Kondisi Berhasil","suiteID":2,"groupIDs":[4,5,9],"metadata":{"skip":false,"skipReason":null},"line":96,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2349}
+{"testID":10,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2352}
+{"test":{"id":11,"name":"abstract News Remote Data Source getNewsByCategory() Kondisi Gagal","suiteID":2,"groupIDs":[4,5,9],"metadata":{"skip":false,"skipReason":null},"line":112,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2352}
+{"testID":11,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2353}
+{"group":{"id":12,"suiteID":2,"parentID":4,"name":"impl News Remote Data Source","metadata":{"skip":false,"skipReason":null},"testCount":12,"line":130,"column":3,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"group","time":2353}
+{"group":{"id":13,"suiteID":2,"parentID":12,"name":"impl News Remote Data Source Get For Your Page","metadata":{"skip":false,"skipReason":null},"testCount":4,"line":133,"column":7,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"group","time":2353}
+{"test":{"id":14,"name":"impl News Remote Data Source Get For Your Page Kondisi Berhasil","suiteID":2,"groupIDs":[4,12,13],"metadata":{"skip":false,"skipReason":null},"line":136,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2354}
+{"testID":14,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2360}
+{"test":{"id":15,"name":"impl News Remote Data Source Get For Your Page Kondisi selain 200/404 (GeneralException)","suiteID":2,"groupIDs":[4,12,13],"metadata":{"skip":false,"skipReason":null},"line":151,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2360}
+{"testID":15,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2363}
+{"test":{"id":16,"name":"impl News Remote Data Source Get For Your Page Kondisi TimeoutException","suiteID":2,"groupIDs":[4,12,13],"metadata":{"skip":false,"skipReason":null},"line":166,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2363}
+{"testID":16,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2365}
+{"test":{"id":17,"name":"impl News Remote Data Source Get For Your Page Kondisi Gagal","suiteID":2,"groupIDs":[4,12,13],"metadata":{"skip":false,"skipReason":null},"line":180,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2365}
+{"testID":17,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2367}
+{"group":{"id":18,"suiteID":2,"parentID":12,"name":"impl News Remote Data Source urlGetNewsByCategory","metadata":{"skip":false,"skipReason":null},"testCount":4,"line":197,"column":7,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"group","time":2367}
+{"test":{"id":19,"name":"impl News Remote Data Source urlGetNewsByCategory Kondisi Berhasil","suiteID":2,"groupIDs":[4,12,18],"metadata":{"skip":false,"skipReason":null},"line":200,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2367}
+{"testID":19,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2369}
+{"test":{"id":20,"name":"impl News Remote Data Source urlGetNewsByCategory Kondisi selain 200/404 (GeneralException)","suiteID":2,"groupIDs":[4,12,18],"metadata":{"skip":false,"skipReason":null},"line":216,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2369}
+{"testID":20,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2371}
+{"test":{"id":21,"name":"impl News Remote Data Source urlGetNewsByCategory Kondisi TimeoutException","suiteID":2,"groupIDs":[4,12,18],"metadata":{"skip":false,"skipReason":null},"line":231,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2371}
+{"testID":21,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2373}
+{"test":{"id":22,"name":"impl News Remote Data Source urlGetNewsByCategory Kondisi Gagal","suiteID":2,"groupIDs":[4,12,18],"metadata":{"skip":false,"skipReason":null},"line":245,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2373}
+{"testID":22,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2374}
+{"group":{"id":23,"suiteID":2,"parentID":12,"name":"impl News Remote Data Source urlSearchNews","metadata":{"skip":false,"skipReason":null},"testCount":4,"line":262,"column":7,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"group","time":2375}
+{"test":{"id":24,"name":"impl News Remote Data Source urlSearchNews Kondisi Berhasil","suiteID":2,"groupIDs":[4,12,23],"metadata":{"skip":false,"skipReason":null},"line":265,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2375}
+{"testID":24,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2376}
+{"test":{"id":25,"name":"impl News Remote Data Source urlSearchNews Kondisi selain 200/404 (GeneralException)","suiteID":2,"groupIDs":[4,12,23],"metadata":{"skip":false,"skipReason":null},"line":282,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2377}
+{"testID":25,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2378}
+{"test":{"id":26,"name":"impl News Remote Data Source urlSearchNews Kondisi TimeoutException","suiteID":2,"groupIDs":[4,12,23],"metadata":{"skip":false,"skipReason":null},"line":298,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2378}
+{"testID":26,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2380}
+{"test":{"id":27,"name":"impl News Remote Data Source urlSearchNews Kondisi Gagal","suiteID":2,"groupIDs":[4,12,23],"metadata":{"skip":false,"skipReason":null},"line":313,"column":11,"url":"file:///Users/zuhdi/Documents/Flutter%20Portofolio/newsapp/test/news/remote_datasources_test.dart"},"type":"testStart","time":2380}
+{"testID":27,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":2382}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":3537}
+{"success":true,"type":"done","time":3549}
