@@ -21,3 +21,4 @@ A modern Flutter News App built using **Clean Architecture** and **BLoC**, with 
 - **GoRouter**
 - **Internet Connection Checker Plus**
 - **Mockito**
+- **Build Runner**
