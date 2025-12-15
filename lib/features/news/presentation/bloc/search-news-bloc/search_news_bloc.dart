@@ -26,5 +26,9 @@ class SearchNewsBloc extends Bloc<SearchEvent, SearchNewsState> {
         emit(SearchNewsError(errorMsg: e.toString()));
       }
     });
+
+    on<ClearSearchEvent>((event, emit) {
+      emit(SearchNewsInitial());
+    });
   }
 }

@@ -17,11 +17,12 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   TextEditingController searchController = TextEditingController();
   ScrollController scrollController = ScrollController();
+  late SearchNewsBloc _searchBloc;
 
   @override
   void initState() {
     super.initState();
-  
+
     scrollController.addListener(() {
       // final bloc = context.read<CategoryProductBloc>();
       if (scrollController.position.pixels >=
@@ -39,7 +40,14 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _searchBloc = context.read<SearchNewsBloc>();
+  }
+
+  @override
   void dispose() {
+    _searchBloc.add(ClearSearchEvent());
     searchController.dispose();
     scrollController.dispose();
     super.dispose();
@@ -49,6 +57,13 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              context.read<SearchNewsBloc>().add(ClearSearchEvent());
+              Navigator.of(context).pop();
+            },
+          ),
           title: SearchBar(
             controller: searchController,
             textStyle: WidgetStatePropertyAll(TextStyle(color: Colors.black)),

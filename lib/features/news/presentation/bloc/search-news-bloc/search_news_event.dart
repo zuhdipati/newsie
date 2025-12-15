@@ -18,3 +18,5 @@ final class SearchNewsEvent extends SearchEvent {
   @override
   List<Object> get props => [query, page, pageSize];
 }
+
+final class ClearSearchEvent extends SearchEvent {}
