@@ -290,17 +290,12 @@ class _HomePageState extends State<HomePage>
 
   Column _breakingNews() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Breaking News",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-              Text("See All", style: TextStyle(fontWeight: FontWeight.w600))
-            ],
-          ),
+          padding: const EdgeInsets.only(left: 12),
+          child: Text("Breaking News",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
         ),
         SizedBox(height: 10),
         SingleChildScrollView(
@@ -351,25 +346,85 @@ class _HomePageState extends State<HomePage>
               return NewsByCategoryLoad();
             }
             if (state is NewsTabError) {
-              return Center(
-                  child: Column(
+              return ListView(
                 children: [
-                  Text(state.errorMsg),
-                  InkWell(
-                      onTap: () {
-                        context
-                            .read<NewsBloc>()
-                            .add(RefreshEvent(category: category));
-                      },
-                      child: Text(
-                        "Refresh",
-                        style: TextStyle(color: Colors.blue),
-                      ))
+                  SizedBox(height: MediaQuery.of(context).size.height / 3),
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.cloud_off, size: 64, color: AppColors.grey),
+                        SizedBox(height: 16),
+                        Text(
+                          state.errorMsg,
+                          style: TextStyle(fontSize: 16),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 16),
+                        InkWell(
+                          onTap: () {
+                            context
+                                .read<NewsBloc>()
+                                .add(RefreshEvent(category: category));
+                          },
+                          child: Text(
+                            "Try Again",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
-              ));
+              );
             }
             if (state is NewsTabLoaded) {
               List<NewsEntity> dataNews = state.categoryNews[category] ?? [];
+
+              if (dataNews.isEmpty) {
+                return ListView(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height / 3),
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.cloud_off,
+                              size: 64, color: AppColors.grey),
+                          SizedBox(height: 16),
+                          Text(
+                            "No data available",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "You may be offline",
+                            style: TextStyle(color: AppColors.grey),
+                          ),
+                          SizedBox(height: 16),
+                          InkWell(
+                            onTap: () {
+                              context
+                                  .read<NewsBloc>()
+                                  .add(RefreshEvent(category: category));
+                            },
+                            child: Text(
+                              "Try Again",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              }
+
               return ListView(
                 children: [
                   NewsListWidget(

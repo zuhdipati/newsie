@@ -86,9 +86,14 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
               page: 1, pageSize: _pageSize);
       dataNewsByCategory.fold(
         (l) {
-          emit(NewsTabError(errorMsg: "an error occured"));
+          emit(
+              NewsTabError(errorMsg: "Failed to load news. Please try again."));
         },
         (r) {
+          if (r.isEmpty) {
+            emit(NewsTabError(errorMsg: "No news available for this category"));
+            return;
+          }
           _cachedCategoryNews[category] = r;
           _categoryPages[category] = 1;
           _hasMoreData[category] = r.length >= _pageSize;
@@ -101,6 +106,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       );
     } catch (e) {
       log(e.toString());
+      emit(NewsTabError(errorMsg: "An error occurred. Please try again."));
     }
   }
 

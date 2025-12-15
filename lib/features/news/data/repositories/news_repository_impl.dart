@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -42,20 +44,19 @@ class NewsRepositoryImpl extends NewsRepository {
   @override
   Future<Either<Failure, List<NewsEntity>>> getNewsByCategory(String category,
       {int page = 1, int pageSize = 5}) async {
-    bool result = await InternetConnection().hasInternetAccess;
+    bool hasInternet = await InternetConnection().hasInternetAccess;
     try {
-      if (result == false) {
-        List<NewsModel> result =
-            await newsLocalDatasources.getNewsByCategory(category);
+      if (hasInternet == false) {
         ToastUtils.error('No Internet Connection');
-        return Right(result.map((e) => e.toEntity()).toList());
+        return Left(Failure());
       } else {
         List<NewsModel> result = await newsRemoteDatasources
             .getNewsByCategory(category, page: page, pageSize: pageSize);
-        box.put("getNewsByCategory", result);
+        box.put("getNewsByCategory_$category", result);
         return Right(result.map((e) => e.toEntity()).toList());
       }
     } catch (e) {
+      log('Error fetching category $category: $e');
       return Left(Failure());
     }
   }
