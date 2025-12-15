@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:newsapp/core/const/endpoints.dart';
@@ -36,7 +35,6 @@ class NewsRemoteDataImpl extends NewsRemoteDatasources {
       Uri url = Uri.parse(urlForYouNews);
       var response = await client.get(url).timeout(Duration(seconds: 30));
       var dataBody = jsonDecode(response.body);
-      log(dataBody.toString());
 
       if (_checkRateLimited(response, dataBody)) {
         throw GeneralException(message: "API rate limit exceeded");
