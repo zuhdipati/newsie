@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:newsapp/core/const/endpoints.dart';
 import 'package:newsapp/core/error/exception.dart';
+import 'package:newsapp/core/utils/toast.dart';
 import 'package:newsapp/features/news/data/models/news_model.dart';
 
 abstract class NewsRemoteDatasources {
@@ -18,12 +20,27 @@ class NewsRemoteDataImpl extends NewsRemoteDatasources {
   http.Client client;
 
   NewsRemoteDataImpl({required this.client});
+
+  bool _checkRateLimited(
+      http.Response response, Map<String, dynamic> dataBody) {
+    if (response.statusCode == 429 || dataBody['code'] == 'rateLimited') {
+      ToastUtils.error('API rate limit exceeded. Please try again later.');
+      return true;
+    }
+    return false;
+  }
+
   @override
   Future<List<NewsModel>> getForYouNews() async {
     try {
       Uri url = Uri.parse(urlForYouNews);
       var response = await client.get(url).timeout(Duration(seconds: 30));
       var dataBody = jsonDecode(response.body);
+      log(dataBody.toString());
+
+      if (_checkRateLimited(response, dataBody)) {
+        throw GeneralException(message: "API rate limit exceeded");
+      }
 
       if (response.statusCode == 200) {
         List<dynamic> data = dataBody['articles'];
@@ -47,6 +64,10 @@ class NewsRemoteDataImpl extends NewsRemoteDatasources {
       var response = await client.get(url).timeout(Duration(seconds: 30));
       var dataBody = jsonDecode(response.body);
 
+      if (_checkRateLimited(response, dataBody)) {
+        throw GeneralException(message: "API rate limit exceeded");
+      }
+
       if (response.statusCode == 200) {
         List<dynamic> data = dataBody['articles'];
         return NewsModel.fromJsonList(data);
@@ -67,6 +88,11 @@ class NewsRemoteDataImpl extends NewsRemoteDatasources {
       Uri url = Uri.parse(urlSearchNews(query, page, pageSize));
       var response = await client.get(url).timeout(Duration(seconds: 30));
       var dataBody = jsonDecode(response.body);
+
+      if (_checkRateLimited(response, dataBody)) {
+        throw GeneralException(message: "API rate limit exceeded");
+      }
+
       if (response.statusCode == 200) {
         List<dynamic> data = dataBody['articles'];
         return NewsModel.fromJsonList(data);
