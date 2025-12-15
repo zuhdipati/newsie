@@ -1,4 +1,6 @@
-String apiKey = "12a0a7e344184cfca34efc8789f4d840";
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+String apiKey = dotenv.env['NEWS_API_KEY'] ?? '';
 String baseUrl = "https://newsapi.org/v2";
 
 String urlForYouNews = "$baseUrl/top-headlines?country=us&apiKey=$apiKey";

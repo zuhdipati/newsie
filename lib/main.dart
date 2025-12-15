@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:newsapp/configs/adapter/adapter_conf.dart';
 import 'package:newsapp/core/themes/app_theme.dart';
@@ -10,6 +11,7 @@ import 'package:newsapp/configs/injector/injector_conf.dart';
 import 'package:newsapp/observer.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
   await Hive.initFlutter();
   configureAdapter();
   await configureInjector();
