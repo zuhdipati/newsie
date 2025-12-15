@@ -23,9 +23,31 @@ final class NewsTabError extends NewsState {
 final class NewsTabLoaded extends NewsState {
   final Map<String, List<NewsEntity>> categoryNews;
   final List<NewsEntity> forYouNews;
+  final bool isLoadingMore;
+  final Map<String, bool> hasMoreData;
 
-  const NewsTabLoaded({required this.categoryNews, required this.forYouNews});
+  const NewsTabLoaded({
+    required this.categoryNews,
+    required this.forYouNews,
+    this.isLoadingMore = false,
+    this.hasMoreData = const {},
+  });
+
+  NewsTabLoaded copyWith({
+    Map<String, List<NewsEntity>>? categoryNews,
+    List<NewsEntity>? forYouNews,
+    bool? isLoadingMore,
+    Map<String, bool>? hasMoreData,
+  }) {
+    return NewsTabLoaded(
+      categoryNews: categoryNews ?? this.categoryNews,
+      forYouNews: forYouNews ?? this.forYouNews,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+      hasMoreData: hasMoreData ?? this.hasMoreData,
+    );
+  }
 
   @override
-  List<Object> get props => [categoryNews, forYouNews];
+  List<Object> get props =>
+      [categoryNews, forYouNews, isLoadingMore, hasMoreData];
 }

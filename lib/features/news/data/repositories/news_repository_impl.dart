@@ -40,8 +40,8 @@ class NewsRepositoryImpl extends NewsRepository {
   }
 
   @override
-  Future<Either<Failure, List<NewsEntity>>> getNewsByCategory(
-      String category) async {
+  Future<Either<Failure, List<NewsEntity>>> getNewsByCategory(String category,
+      {int page = 1, int pageSize = 5}) async {
     bool result = await InternetConnection().hasInternetAccess;
     try {
       if (result == false) {
@@ -50,8 +50,8 @@ class NewsRepositoryImpl extends NewsRepository {
         ToastUtils.error('No Internet Connection');
         return Right(result.map((e) => e.toEntity()).toList());
       } else {
-        List<NewsModel> result =
-            await newsRemoteDatasources.getNewsByCategory(category);
+        List<NewsModel> result = await newsRemoteDatasources
+            .getNewsByCategory(category, page: page, pageSize: pageSize);
         box.put("getNewsByCategory", result);
         return Right(result.map((e) => e.toEntity()).toList());
       }

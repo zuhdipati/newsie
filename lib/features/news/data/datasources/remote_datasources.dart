@@ -8,7 +8,8 @@ import 'package:newsapp/features/news/data/models/news_model.dart';
 
 abstract class NewsRemoteDatasources {
   Future<List<NewsModel>> getForYouNews();
-  Future<List<NewsModel>> getNewsByCategory(String category);
+  Future<List<NewsModel>> getNewsByCategory(String category,
+      {int page = 1, int pageSize = 20});
   Future<List<NewsModel>> getSearchNews(
       String query, String page, String pageSize);
 }
@@ -38,9 +39,11 @@ class NewsRemoteDataImpl extends NewsRemoteDatasources {
   }
 
   @override
-  Future<List<NewsModel>> getNewsByCategory(String category) async {
+  Future<List<NewsModel>> getNewsByCategory(String category,
+      {int page = 1, int pageSize = 5}) async {
     try {
-      Uri url = Uri.parse(urlNewsByCategory(category));
+      Uri url = Uri.parse(
+          urlNewsByCategory(category, page: page, pageSize: pageSize));
       var response = await client.get(url).timeout(Duration(seconds: 30));
       var dataBody = jsonDecode(response.body);
 

@@ -33,3 +33,12 @@ final class RefreshEvent extends NewsEvent {
   @override
   List<Object> get props => [category];
 }
+
+final class LoadMoreCategoryEvent extends NewsEvent {
+  final String category;
+
+  const LoadMoreCategoryEvent({required this.category});
+
+  @override
+  List<Object> get props => [category];
+}

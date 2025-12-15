@@ -324,13 +324,27 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  RefreshIndicator _newsByCategory(String category) {
-    return RefreshIndicator.adaptive(
-      color: AppColors.grey,
-      onRefresh: () async {
-        context.read<NewsBloc>().add(RefreshEvent(category: category));
+  Widget _newsByCategory(String category) {
+    return NotificationListener<ScrollNotification>(
+      onNotification: (ScrollNotification scrollInfo) {
+        if (scrollInfo.metrics.pixels >=
+            scrollInfo.metrics.maxScrollExtent - 200) {
+          final state = context.read<NewsBloc>().state;
+          if (state is NewsTabLoaded && !state.isLoadingMore) {
+            if (state.hasMoreData[category] != false) {
+              context
+                  .read<NewsBloc>()
+                  .add(LoadMoreCategoryEvent(category: category));
+            }
+          }
+        }
+        return false;
       },
-      child: SingleChildScrollView(
+      child: RefreshIndicator.adaptive(
+        color: AppColors.grey,
+        onRefresh: () async {
+          context.read<NewsBloc>().add(RefreshEvent(category: category));
+        },
         child: BlocBuilder<NewsBloc, NewsState>(
           builder: (context, state) {
             if (state is NewsTabLoading) {
@@ -356,9 +370,32 @@ class _HomePageState extends State<HomePage>
             }
             if (state is NewsTabLoaded) {
               List<NewsEntity> dataNews = state.categoryNews[category] ?? [];
-              return NewsListWidget(
-                currentCategory: category,
-                dataNews: dataNews,
+              return ListView(
+                children: [
+                  NewsListWidget(
+                    currentCategory: category,
+                    dataNews: dataNews,
+                  ),
+                  if (state.isLoadingMore)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    ),
+                  if (state.hasMoreData[category] == false &&
+                      dataNews.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Center(
+                        child: Text(
+                          "No more news",
+                          style: TextStyle(color: AppColors.grey),
+                        ),
+                      ),
+                    ),
+                  SizedBox(height: 20),
+                ],
               );
             }
             return SizedBox();

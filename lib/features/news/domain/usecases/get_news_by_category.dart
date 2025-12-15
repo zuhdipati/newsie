@@ -8,7 +8,9 @@ class GetNewsByCategory {
 
   GetNewsByCategory({required this.newsRepository});
 
-  Future<Either<Failure, List<NewsEntity>>> call(String category) async {
-    return await newsRepository.getNewsByCategory(category);
+  Future<Either<Failure, List<NewsEntity>>> call(String category,
+      {int page = 1, int pageSize = 5}) async {
+    return await newsRepository.getNewsByCategory(category,
+        page: page, pageSize: pageSize);
   }
 }
