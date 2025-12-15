@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:newsapp/core/themes/app_colors.dart';
+import 'package:newsapp/core/utils/image_utils.dart';
 import 'package:newsapp/features/news/domain/entities/news_category.dart';
 import 'package:newsapp/features/news/presentation/bloc/news-bloc/news_bloc.dart';
 import 'package:newsapp/features/news/presentation/widgets/load/breaking_news_load.dart';
@@ -66,11 +67,16 @@ class BreakingNewsListWidget extends StatelessWidget {
                           color: AppColors.grey,
                           borderRadius: BorderRadius.circular(15)),
                       child: CachedNetworkImage(
-                        imageUrl: dataNews[index].urlToImage,
+                        imageUrl:
+                            ImageUtils.getImageUrl(dataNews[index].urlToImage),
                         placeholder: (context, url) => Center(
                           child: CircularProgressIndicator.adaptive(),
                         ),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) => Center(
+                            child: Text(
+                          "No Image",
+                          style: TextStyle(color: AppColors.secondary),
+                        )),
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),

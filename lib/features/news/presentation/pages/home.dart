@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:newsapp/core/themes/app_colors.dart';
+import 'package:newsapp/core/utils/image_utils.dart';
 import 'package:newsapp/features/news/domain/entities/news_category.dart';
 import 'package:newsapp/features/news/presentation/bloc/news-bloc/news_bloc.dart';
 import 'package:newsapp/features/news/presentation/widgets/breaking_news_list.dart';
@@ -130,7 +132,8 @@ class _HomePageState extends State<HomePage>
   RefreshIndicator _forYouCategory(BuildContext context) {
     return RefreshIndicator.adaptive(
       color: AppColors.grey,
-      onRefresh: () async => context.read<NewsBloc>().add(RefreshEvent(category: 'for you')),
+      onRefresh: () async =>
+          context.read<NewsBloc>().add(RefreshEvent(category: 'for you')),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -175,6 +178,9 @@ class _HomePageState extends State<HomePage>
                       },
                     ),
                     itemBuilder: (context, index, realIndex) {
+                      String publishedAt = DateFormat('dd-MM-yyyy HH:mm')
+                          .format(
+                              DateTime.parse(dataCategory[index].publishedAt));
                       return InkWell(
                         onTap: () {
                           context.pushNamed(
@@ -188,12 +194,16 @@ class _HomePageState extends State<HomePage>
                         child: Stack(
                           children: [
                             CachedNetworkImage(
-                              imageUrl: dataCategory[index].urlToImage,
+                              imageUrl: ImageUtils.getImageUrl(
+                                  dataCategory[index].urlToImage),
                               placeholder: (context, url) => Center(
                                 child: CircularProgressIndicator.adaptive(),
                               ),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                              errorWidget: (context, url, error) => Center(
+                                  child: Text(
+                                "No Image",
+                                style: TextStyle(color: AppColors.secondary),
+                              )),
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
@@ -213,6 +223,7 @@ class _HomePageState extends State<HomePage>
                               padding: const EdgeInsets.all(12),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     dataCategory[index].title,
@@ -229,9 +240,9 @@ class _HomePageState extends State<HomePage>
                                         style:
                                             TextStyle(color: AppColors.primary),
                                       ),
-                                      Text(" - "),
+                                      SizedBox(width: 10),
                                       Text(
-                                        dataCategory[index].publishedAt,
+                                        publishedAt,
                                         style:
                                             TextStyle(color: AppColors.primary),
                                       )
@@ -298,7 +309,7 @@ class _HomePageState extends State<HomePage>
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: List.generate(
-                5,
+                10,
                 (index) {
                   return BreakingNewsListWidget(
                     index: index,
@@ -332,7 +343,9 @@ class _HomePageState extends State<HomePage>
                   Text(state.errorMsg),
                   InkWell(
                       onTap: () {
-                        context.read<NewsBloc>().add(RefreshEvent(category: category));
+                        context
+                            .read<NewsBloc>()
+                            .add(RefreshEvent(category: category));
                       },
                       child: Text(
                         "Refresh",

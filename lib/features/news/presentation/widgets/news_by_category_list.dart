@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:newsapp/core/themes/app_colors.dart';
+import 'package:newsapp/core/utils/image_utils.dart';
 import 'package:newsapp/features/news/domain/entities/news_category.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -50,12 +51,16 @@ class NewsListWidget extends StatelessWidget {
                               color: AppColors.lightGrey,
                               borderRadius: BorderRadius.circular(15)),
                           child: CachedNetworkImage(
-                            imageUrl: dataNews[index].urlToImage,
+                            imageUrl: ImageUtils.getImageUrl(
+                                dataNews[index].urlToImage),
                             placeholder: (context, url) => Center(
                               child: CircularProgressIndicator.adaptive(),
                             ),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                            errorWidget: (context, url, error) => Center(
+                                child: Text(
+                              "No Image",
+                              style: TextStyle(color: AppColors.secondary),
+                            )),
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
